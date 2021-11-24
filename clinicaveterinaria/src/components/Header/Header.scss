@@ -1,0 +1,13 @@
+.header{
+    display: flex;
+    justify-content: space-around;
+    height: 7.8rem;
+    .header_address{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+        margin: 2rem;
+    }
+}
+
+
