@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 // import { AddToken } from '../../services/action/addToken/AddToken';
-// import useDispatch from 'react-redux'
+import useDispatch from 'react-redux'
 import Button from '../../components/Boton/Button';
 import Home from '../Home/Home';
 import { APIConsumer } from '../../service/ApiConsumer/APIConsumer';
 
 const Login = (props) => {
 
-    const [auth, setauth] = useState(false)
+    // const [auth, setauth] = useState(false)
     const [Formulario, setFormulario] = useState(true)
     
-//     const dispatch = useDispatch()
+    const dispatch = useDispatch()
     
 
 
@@ -25,20 +25,20 @@ const Login = (props) => {
 
         try {
 
-            // let res = await APIConsumer.loginUser(email, password);
-//             let token = res.token
-//             console.log(token);
-//             dispatch(AddToken(token));
-//             (token.length > 0) ?
-//                 setTimeout(() => { 
-//                     setauth(true) 
-//                     setFormulario(false)
-//                 }, 2000)
-//             : console.log(null)
+            let res = await APIConsumer.loginUser(email, password);
+            let token = res.token
+            console.log(token);
+            // dispatch(AddToken(token));
+            (token.length > 0) ?
+                setTimeout(() => { 
+                    // setauth(true) 
+                    setFormulario(false)
+                }, 2000)
+            : console.log(null)
             
 
         } catch (error) {
-//             alert(error, " hola mundo");
+            alert(error, " No entra");
         }
 
     }
@@ -47,7 +47,7 @@ const Login = (props) => {
         <>
         <Home/>
         <div className="Profile">
-            {/* {Formulario &&  */}
+            {Formulario && 
             <form onSubmit={(e) => handleSendData(e)}>
                 <legend>Bienvenido a PataPata</legend>
                 <div>
@@ -75,8 +75,8 @@ const Login = (props) => {
                 <Button type="submit">Sing in</Button>
                 <Button type="submit">Sing up</Button>
             </form>
-            {/* } */}
-            {/* {auth && <Todolist/>} */}
+            } 
+            {/* {auth && <Todolist/>}  */}
         </div>
         </>
     )
