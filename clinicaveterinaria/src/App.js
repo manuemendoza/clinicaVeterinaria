@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
 
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home/>} exact />
-            <Route path="/login" exact />
+            <Route path="/login" element={<Login/>} exact />
             <Route path="/register" exact />
             <Route path="/register/pet"  exact />
             <Route path="/appointment" exact />

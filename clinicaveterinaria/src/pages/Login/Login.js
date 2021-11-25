@@ -1,29 +1,31 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 // import { AddToken } from '../../services/action/addToken/AddToken';
-import { loginUser } from '../../service/ApiConsumer/loginUser';
 // import useDispatch from 'react-redux'
+import Button from '../../components/Boton/Button';
+import Home from '../Home/Home';
+import { APIConsumer } from '../../service/ApiConsumer/APIConsumer';
 
 const Login = (props) => {
 
-//     const [auth, setauth] = useState(false)
-//     const [Formulario, setFormulario] = useState(true)
+    const [auth, setauth] = useState(false)
+    const [Formulario, setFormulario] = useState(true)
     
 //     const dispatch = useDispatch()
     
 
 
 //     //enviamos datos y logeamos al usuario 
-//     const handleSendData = async (e) => {
+    const handleSendData = async (e) => {
 
-//         e.preventDefault()
-//         let email = e.target.email.value
-//         let password = e.target.password.value
-//         console.log(email);
-//         console.log(password);
+        e.preventDefault()
+        let email = e.target.email.value
+        let password = e.target.password.value
+        console.log(email);
+        console.log(password);
 
-//         try {
+        try {
 
-//             let res = await APIConsumer.loginUser(email, password);
+            // let res = await APIConsumer.loginUser(email, password);
 //             let token = res.token
 //             console.log(token);
 //             dispatch(AddToken(token));
@@ -35,21 +37,23 @@ const Login = (props) => {
 //             : console.log(null)
             
 
-//         } catch (error) {
+        } catch (error) {
 //             alert(error, " hola mundo");
-//         }
+        }
 
-//     }
+    }
 
     return (
-
+        <>
+        <Home/>
         <div className="Profile">
             {/* {Formulario &&  */}
-            <form /*onSubmit={(e) => handleSendData(e)}*/>
-                <legend>Bienvenido a tu lista de Tareas</legend>
+            <form onSubmit={(e) => handleSendData(e)}>
+                <legend>Bienvenido a PataPata</legend>
                 <div>
                     <div>
                         <label>
+                            Email: 
                             <input
                                 type='email'
                                 name='email'
@@ -59,6 +63,7 @@ const Login = (props) => {
                     </div>
                     <div>
                         <label>
+                            Email: 
                             <input
                                 type='password'
                                 name='password'
@@ -67,12 +72,13 @@ const Login = (props) => {
                         </label>
                     </div>
                 </div>
-                <button className="buttonEntrar" type="onSubmit"  > <span>  Entrar </span></button>
-                <button> <span> Registrarte </span> </button>
+                <Button type="submit">Sing in</Button>
+                <Button type="submit">Sing up</Button>
             </form>
             {/* } */}
             {/* {auth && <Todolist/>} */}
         </div>
+        </>
     )
 }
 export default Login

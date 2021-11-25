@@ -31,13 +31,12 @@ const NavBar = () =>{
                         </ul>
                     </li>
                     <li>
-                        <a href="#">Conocenos</a>
+                        <a href="#">Contactanos</a>
                     </li>
                 </ul>
             </nav>
-            <div>
-                <Button onClick={()=>navigate('/login')} >Sing in</Button>
-                <Button onClick={()=>navigate('/register')} >Sing up</Button>
+            <div className="navbar_button" >
+                <Button onClick={()=>navigate('/login')} className="navbar_button-in">Pidenos una Cita</Button>
             </div>
         </div>
         </>
