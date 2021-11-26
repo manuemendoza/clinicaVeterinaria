@@ -1,9 +1,26 @@
 import { useNavigate } from "react-router";
 import Button from "../Boton/Button";
 import "./NavBar.scss"
-
+import store from "../../services/store/store";
+import { useEffect, useState } from "react";
 const NavBar = () =>{
-    let navigate = useNavigate()
+    
+    const [Login, setLogin] = useState(null);
+    let navigate = useNavigate();
+
+    useEffect(()=>{
+        
+        store.subscribe(()=>{
+            setLogin(store.getState().token)
+        })
+        console.log(store.getState().toke);
+    },[]);
+
+    // const handlendDeleteToken = () =>{
+
+    // };
+
+
     return(
         <>
         <div className="navbar_conteiner">
@@ -35,8 +52,10 @@ const NavBar = () =>{
                     </li>
                 </ul>
             </nav>
+            
             <div className="navbar_button" >
-                <Button onClick={()=>navigate('/login')} className="navbar_button-in">Pidenos una Cita</Button>
+            {(Login) ? <Button>Logout</Button>  : <Button onClick={()=>navigate('/login')} className="navbar_button-in">Pidenos una Cita</Button>}
+                
             </div>
         </div>
         </>

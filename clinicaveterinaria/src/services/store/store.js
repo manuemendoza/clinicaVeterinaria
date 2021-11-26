@@ -4,12 +4,13 @@ const startState = {
     token: null
 };
 
-const reduce = (initialState=startState, action) => {
+const reduce = (initialState=startState , action) => {
     switch (action.type) {
         case "ADD_TOKEN":
-            return{
-                token:action.payload
-            }
+            return {
+                    ...initialState,
+                    token: action.payload // AQUI NO ES UN CONCAT
+                }
         default:
             return initialState;
     }
