@@ -14,3 +14,5 @@ const reduce = (initialState=startState, action) => {
             return initialState;
     }
 };
+
+export default createStore(reduce)
