@@ -7,11 +7,13 @@ const CreatePet = () => {
     const HandleCreatePet = (c) => {
         c.preventDefault()
         const name = c.target.name.value;
-        const animal = c.target.animal.value;
+        const animal = c.target.kind.value;
         const breed = c.target.breed.value;
+        const gender = c.target.gender.value;
         console.log(name);
         console.log(animal);
         console.log(breed);
+        console.log(gender);
     };
 
     return(
@@ -32,10 +34,18 @@ const CreatePet = () => {
                         </div>
                         <div>
                             <label>
+                                Macho
+                                <input type="radio" name="gender" value="Macho" checked/>
+                                Hembra
+                                <input type="radio" name="gender" value="Hembra"/>
+                            </label>
+                        </div>
+                        <div>
+                            <label>
                                 <input
                                     type='text'
-                                    name='animal'
-                                    placeholder="Cual es tu tipo de animalito"
+                                    name='kind'
+                                    placeholder="Que Especie es tu animalito"
                                     required />
                             </label>
                         </div>
