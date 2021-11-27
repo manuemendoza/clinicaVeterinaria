@@ -19,10 +19,11 @@ const CreateUser = () => {
         const name = d.target.name.value;
         const surname = d.target.surname.value;
         const email = d.target.email.value;
+        const telephone = d.target.telephone.value;
         const password= d.target.password.value;
 
         try {
-            let res = await ApiConsumer.CreateUser(name, surname, email, password);
+            let res = await ApiConsumer.CreateUser(name, surname, email, telephone, password);
             console.log(res);
             if (res) {
                 navigate('/register/pet');
@@ -67,6 +68,15 @@ const CreateUser = () => {
                                     type='email'
                                     name='email'
                                     placeholder="Escribe aqui tu email"
+                                    required />
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input
+                                    type='tel'
+                                    name='telephone'
+                                    placeholder="Telefono de contacto"
                                     required />
                             </label>
                         </div>
