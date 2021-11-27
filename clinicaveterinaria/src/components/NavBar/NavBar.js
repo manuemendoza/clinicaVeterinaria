@@ -3,21 +3,25 @@ import Button from "../Boton/Button";
 import "./NavBar.scss"
 import store from "../../services/store/store";
 import { useEffect, useState } from "react";
+import { deleteToken } from "../../services/actions/deleteToken";
 const NavBar = () =>{
     
     const [Login, setLogin] = useState(null);
     let navigate = useNavigate();
-
+    
     useEffect(()=>{
         
         store.subscribe(()=>{
             setLogin(store.getState().token)
-        })
-        console.log(store.getState().toke);
+        });
+
     },[]);
-
-    // const handlendDeleteToken = () =>{
-
+    
+    // const handlendDeleteToken = (r) =>{
+    //     //     r.preventDefault()
+    //     //     store.dispatch(deleteToken());
+    //     //     store.subscribe(()=>{setLogin(store.getState().token)});
+    //     console.log('mejora esto puto');
     // };
 
 
@@ -54,7 +58,7 @@ const NavBar = () =>{
             </nav>
             
             <div className="navbar_button" >
-            {(Login) ? <Button>Logout</Button>  : <Button onClick={()=>navigate('/login')} className="navbar_button-in">Pidenos una Cita</Button>}
+            {(Login) ? <Button /*onClick={ (r) => handlendDeleteToken(r)}*/  >Logout</Button>  : <Button onClick={()=>navigate('/login')} className="navbar_button-in">Pidenos una Cita</Button>}
                 
             </div>
         </div>
