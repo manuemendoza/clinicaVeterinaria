@@ -2,34 +2,56 @@ export const ApiConsumer = {
 
     loginUser: async (email, password) => {
         try {
-            let result = await fetch(`http://localhost:9525/users/login`, {
+            let result = await fetch(`http://localhost:9525/clients/login`, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     "email": email,
                     "password": password
                 })
-            })
+            });
             
-            const token = await result.json();
-            console.log(token);
-            return token 
+            const userData = await result.json();
+            console.log(userData.token);
+            return userData;
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     },
     
-    CreateUser: async (name, surname, email, telephone, password) => {
+    CreateUser: async (name, surName, email, telephone, password) => {
         try {
-            let result = await fetch(`http://localhost:9525/users`, {
+            let result = await fetch(`http://localhost:9525/clients`, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     "name": name,
-                    "surname": surname,
+                    "surName": surName,
                     "email": email,
-                    "telephone": telephone,
+                    "phoneNumber": telephone,
                     "password": password
+
+                })
+            })
+
+            return await result.json()
+        } catch (error) {
+
+            console.log(error)
+        }
+    },
+    CreatePet: async (name, animal, breed, gender, information, idUser) => {
+        try {
+            let result = await fetch(`http://localhost:9525/clients`, {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    "name": name,
+                    "animal": animal,
+                    "breed": breed,
+                    "gender": gender,
+                    "information": information,
+                    "idUser": idUser
 
                 })
             })

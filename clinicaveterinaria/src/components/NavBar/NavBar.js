@@ -6,15 +6,21 @@ import { useEffect, useState } from "react";
 import { deleteToken } from "../../services/actions/deleteToken";
 const NavBar = () =>{
     
-    const [Login, setLogin] = useState(null);
+    const [Login, setLogin ] = useState(null);
+    const token = localStorage.getItem('token');
+    
+    
     let navigate = useNavigate();
     
     useEffect(()=>{
+        if (token) {
+            setLogin(token)
+        } else {
+            store.subscribe(()=>{
+                setLogin(store.getState().token)
+            });
+        }
         
-        store.subscribe(()=>{
-            setLogin(store.getState().token)
-        });
-
     },[]);
     
     // const handlendDeleteToken = (r) =>{

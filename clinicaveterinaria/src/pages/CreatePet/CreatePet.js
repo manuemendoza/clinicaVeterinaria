@@ -1,6 +1,7 @@
 import Button from "../../components/Boton/Button";
 import Header from "../../components/Header/Header";
 import NavBar from "../../components/NavBar/NavBar";
+import { ApiConsumer } from "../../services/ApiConsumer/ApiConsumer";
 
 const CreatePet = () => {
 
@@ -10,10 +11,13 @@ const CreatePet = () => {
         const animal = c.target.kind.value;
         const breed = c.target.breed.value;
         const gender = c.target.gender.value;
+        const information = c.target.information.value;
         console.log(name);
         console.log(animal);
         console.log(breed);
         console.log(gender);
+        console.log(information);
+        ApiConsumer.CreatePet(name, animal, breed, gender, information)
     };
 
     return(
@@ -25,6 +29,7 @@ const CreatePet = () => {
                     <div>
                         <div>
                             <label className="text">
+                                Nombre:
                                 <input
                                     type='text'
                                     name='name'
@@ -42,6 +47,7 @@ const CreatePet = () => {
                         </div>
                         <div>
                             <label>
+                                Especie:
                                 <input
                                     type='text'
                                     name='kind'
@@ -51,11 +57,23 @@ const CreatePet = () => {
                         </div>
                         <div>
                             <label>
+                                Raza:
                                 <input
                                     type='text'
                                     name='breed'
                                     placeholder="Cual es tu Raza"
                                     required />
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                información adicional:
+                                <textarea 
+                                name="information"
+                                placeholder="cuentanos Sobre tu mascota ejemplo alergias, humor en el veterinario, etc.." 
+                                id="" 
+                                cols="30" 
+                                rows="10"/>
                             </label>
                         </div>
                     </div>

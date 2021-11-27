@@ -14,7 +14,7 @@ const reduce = (initialState=startState , action) => {
         case "DELETE_TOKE":
             return{
                 ...initialState,
-                toke: null
+                token: null
             }
         default:
             return initialState;

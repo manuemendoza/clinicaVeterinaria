@@ -17,13 +17,14 @@ const CreateUser = () => {
         d.preventDefault();
         setLoading(true)
         const name = d.target.name.value;
-        const surname = d.target.surname.value;
+        const surName = d.target.surname.value;
         const email = d.target.email.value;
         const telephone = d.target.telephone.value;
         const password= d.target.password.value;
+        console.log(surName);
 
         try {
-            let res = await ApiConsumer.CreateUser(name, surname, email, telephone, password);
+            let res = await ApiConsumer.CreateUser(name, surName, email, telephone, password);
             console.log(res);
             if (res) {
                 navigate('/register/pet');
