@@ -17,6 +17,27 @@ export const ApiConsumer = {
         } catch (error) {
             console.log(error)
         }
-    }
+    },
+    
+    CreateUser: async (name, surname, email, password) => {
+        try {
+            let result = await fetch(`http://localhost:9525/users`, {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    "name": name,
+                    "surname": surname,
+                    "email": email,
+                    "password": password
+
+                })
+            })
+
+            return await result.json()
+        } catch (error) {
+
+            console.log(error)
+        }
+    },
 
 }

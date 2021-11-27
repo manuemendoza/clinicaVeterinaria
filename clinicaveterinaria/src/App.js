@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CreatePet from "./pages/CreatePet/CreatePet";
+import CreateUser from "./pages/CreateUser/CreateUser";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 
@@ -11,8 +13,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>} exact />
             <Route path="/login" element={<Login/>} exact />
-            <Route path="/register" exact />
-            <Route path="/register/pet"  exact />
+            <Route path="/register" element={<CreateUser/>} exact />
+            <Route path="/register/pet" element={<CreatePet/>} exact />
             <Route path="/appointment" exact />
             <Route path="/user/pet/list"  exact />
             <Route path="/user/pet" exact />

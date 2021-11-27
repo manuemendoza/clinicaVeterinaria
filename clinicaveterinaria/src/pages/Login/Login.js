@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Button from '../../components/Boton/Button';
-import Home from '../Home/Home';
 import { ApiConsumer } from '../../services/ApiConsumer/ApiConsumer';
 import store from '../../services/store/store';
 import { addToken } from '../../services/actions/addToken';
 import { useNavigate } from 'react-router';
+import Header from '../../components/Header/Header';
+import NavBar from '../../components/NavBar/NavBar';
+
 
 const Login = (props) => {
 
@@ -32,6 +34,7 @@ const Login = (props) => {
             console.log(token);
             
             store.dispatch(addToken(token))
+            localStorage.setItem('token', token);
             
             // (token.length > 0) ?
             //     setTimeout(() => { 
@@ -49,7 +52,8 @@ const Login = (props) => {
 
     return (
         <>
-        <Home/>
+        <Header/>
+        <NavBar/>
         <div className="Profile">
             <form onSubmit={(e) => handleSendData(e)}> 
                 <legend>Bienvenido a PataPata</legend>
@@ -75,8 +79,8 @@ const Login = (props) => {
                         </label>
                     </div>
                 </div>
-                <input type="submit" value="Sing in"/>
-                <button onClick={()=>redirection()} >Sing out</button>
+                <Button type="submit" >Entra</Button>
+                <Button onClick={()=>redirection()} >Registrate</Button>
             </form>
             {/* {auth && <Todolist/>}  */}
         </div>
