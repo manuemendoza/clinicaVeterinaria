@@ -3,6 +3,7 @@ import CreatePet from "./pages/CreatePet/CreatePet";
 import CreateUser from "./pages/CreateUser/CreateUser";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
+import UserPage from "./pages/UserPage/UserPage";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Route path="/register" element={<CreateUser/>} exact />
             <Route path="/register/pet" element={<CreatePet/>} exact />
             <Route path="/appointment" exact />
+            <Route path="/user" element={<UserPage/>} exact />
             <Route path="/user/pet/list"  exact />
             <Route path="/user/pet" exact />
             <Route path="/admin"  exact />
