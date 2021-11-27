@@ -14,9 +14,12 @@ const Login = (props) => {
     // const [Formulario, setFormulario] = useState(true)
     
     const navigate = useNavigate()
-    const redirection = () => {
+    const redirectionToRegister = () => {
         navigate("/register")
     }
+    const redirectionToUser = () => {
+        navigate("/user")
+    };
     
 //     //enviamos datos y logeamos al usuario 
     const handleSendData = async (e) => {
@@ -24,24 +27,23 @@ const Login = (props) => {
         e.preventDefault()
         let email = e.target.email.value
         let password = e.target.password.value
-        console.log(email);
-        console.log(password);
+        // console.log(email);
+        // console.log(password);
 
         try {
 
             const res = await ApiConsumer.loginUser(email, password);
             let token = res.token
-            console.log(token);
+            // console.log(token);
             
             store.dispatch(addToken(token))
             localStorage.setItem('token', token);
             
-            // (token.length > 0) ?
-            //     setTimeout(() => { 
-            //         // setauth(true) 
-            //         setFormulario(false)
-            //     }, 2000)
-            // : console.log(null)
+            (token.length > 0) ?
+                setTimeout(() => { 
+                    redirectionToUser()
+                }, 2000)
+            : console.log(null)
             
 
         } catch (error) {
@@ -80,7 +82,7 @@ const Login = (props) => {
                     </div>
                 </div>
                 <Button type="submit" >Entra</Button>
-                <Button onClick={()=>redirection()} >Registrate</Button>
+                <Button onClick={()=>redirectionToRegister()} >Registrate</Button>
             </form>
             {/* {auth && <Todolist/>}  */}
         </div>
