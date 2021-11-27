@@ -19,7 +19,7 @@ export const ApiConsumer = {
         }
     },
     
-    CreateUser: async (name, surname, email, password) => {
+    CreateUser: async (name, surname, email, telephone, password) => {
         try {
             let result = await fetch(`http://localhost:9525/users`, {
                 method: "POST",
@@ -28,6 +28,7 @@ export const ApiConsumer = {
                     "name": name,
                     "surname": surname,
                     "email": email,
+                    "telephone": telephone,
                     "password": password
 
                 })
