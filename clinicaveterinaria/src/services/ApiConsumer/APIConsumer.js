@@ -18,14 +18,16 @@ export const ApiConsumer = {
             console.log(error);
         }
     },
-    logout: async (logout) => {
+    logout: async (token) => {
         try {
             let result = await fetch(`http://localhost:9525/clients/logout`, {
                 method: "POST",
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    "Authorization": "Bearer " + localStorage.getItem('token') 
+                },
                 body: JSON.stringify({
-                    "email": email,
-                    "password": password
+                    "token": token
                 })
             });
             
@@ -41,7 +43,9 @@ export const ApiConsumer = {
         try {
             let result = await fetch(`http://localhost:9525/clients`, {
                 method: "POST",
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                },
                 body: JSON.stringify({
                     "name": name,
                     "surName": surName,
@@ -60,12 +64,13 @@ export const ApiConsumer = {
     },
     CreatePet: async (name, animal, breed, gender, information, idUser) => {
         try {
-            let result = await fetch(`http://localhost:9525/clients`, {
+            let result = await fetch(`http://localhost:9525/pet`, {
                 method: "POST",
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',
+                "Authorization": "Bearer " + localStorage.getItem('token')  },
                 body: JSON.stringify({
                     "name": name,
-                    "animal": animal,
+                    "kind": animal,
                     "breed": breed,
                     "gender": gender,
                     "information": information,

@@ -44,13 +44,13 @@ const Login = (props) => {
             
             
 
-            if (token.length > 0) { 
-                setTimeout(() => { 
-                    redirectionToUser();
-                }, 2000);
-            } else {   
-                console.log(null);
-            };
+            // if (token.length > 0) { 
+            //     setTimeout(() => { 
+            //         redirectionToUser();
+            //     }, 2000);
+            // } else {   
+            //     console.log(null);
+            // };
 
         } catch (error) {
             alert(error, " No entra");

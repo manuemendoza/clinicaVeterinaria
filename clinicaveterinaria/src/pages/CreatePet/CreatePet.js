@@ -5,19 +5,23 @@ import { ApiConsumer } from "../../services/ApiConsumer/ApiConsumer";
 
 const CreatePet = () => {
 
-    const HandleCreatePet = (c) => {
+    const HandleCreatePet = async (c) => {
         c.preventDefault()
         const name = c.target.name.value;
         const animal = c.target.kind.value;
         const breed = c.target.breed.value;
         const gender = c.target.gender.value;
         const information = c.target.information.value;
-        console.log(name);
-        console.log(animal);
-        console.log(breed);
-        console.log(gender);
-        console.log(information);
-        ApiConsumer.CreatePet(name, animal, breed, gender, information)
+        try {
+            const user =JSON.parse(localStorage.getItem('user'));
+            const idUser = user.id;
+            const res = await ApiConsumer.CreatePet(name, gender, animal, breed, information, idUser);
+            console.log(res);
+        } catch (error) {
+            alert(error);
+            // setError(true);
+            // setLoading(false);
+        }
     };
 
     return(

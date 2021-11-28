@@ -3,7 +3,9 @@ import { useNavigate } from "react-router";
 import Button from "../../components/Boton/Button";
 import Header from "../../components/Header/Header";
 import NavBar from "../../components/NavBar/NavBar";
+import { addToken } from "../../services/actions/addToken";
 import { ApiConsumer } from "../../services/ApiConsumer/ApiConsumer";
+import store from "../../services/store/store";
 
 
 const CreateUser = () => {
@@ -24,7 +26,14 @@ const CreateUser = () => {
         console.log(surName);
 
         try {
-            let res = await ApiConsumer.CreateUser(name, surName, email, telephone, password);
+            const res = await ApiConsumer.CreateUser(name, surName, email, telephone, password);
+            const resultLogin= await ApiConsumer.loginUser(email, password);
+            let token = resultLogin.token;
+            let user = resultLogin.user;
+            localStorage.setItem('token', token);            
+            localStorage.setItem('user', JSON.stringify(user));            
+            store.dispatch(addToken(token));
+            
             console.log(res);
             if (res) {
                 navigate('/register/pet');

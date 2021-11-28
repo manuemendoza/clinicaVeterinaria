@@ -4,6 +4,7 @@ import "./NavBar.scss"
 import store from "../../services/store/store";
 import { useEffect, useState } from "react";
 import { deleteToken } from "../../services/actions/deleteToken";
+import { ApiConsumer } from "../../services/ApiConsumer/ApiConsumer";
 const NavBar = () =>{
     
     const [Login, setLogin ] = useState(null);
@@ -23,12 +24,20 @@ const NavBar = () =>{
         
     },[]);
     
-    // const handlendDeleteToken = (r) =>{
-    //     //     r.preventDefault()
-    //     //     store.dispatch(deleteToken());
-    //     //     store.subscribe(()=>{setLogin(store.getState().token)});
-    //     console.log('mejora esto puto');
-    // };
+    const handlendDeleteToken = async (r) =>{
+        
+        r.preventDefault()
+        
+        store.dispatch(deleteToken(token));
+        const res = await ApiConsumer.logout(token);
+        console.log(res);
+        localStorage.setItem('token', []);
+        localStorage.setItem('user', [])
+        setLogin(null);
+        
+        console.log('mejora esto puto');
+        
+    };
 
 
     return(
@@ -64,7 +73,7 @@ const NavBar = () =>{
             </nav>
             
             <div className="navbar_button" >
-            {(Login) ? <Button /*onClick={ (r) => handlendDeleteToken(r)}*/  >Logout</Button>  : <Button onClick={()=>navigate('/login')} className="navbar_button-in">Pidenos una Cita</Button>}
+            {(Login) ? <Button onClick={ (r) => handlendDeleteToken(r)}  >Logout</Button>  : <Button onClick={()=>navigate('/login')} className="navbar_button-in">Pidenos una Cita</Button>}
                 
             </div>
         </div>
