@@ -18,6 +18,24 @@ export const ApiConsumer = {
             console.log(error);
         }
     },
+    logout: async (logout) => {
+        try {
+            let result = await fetch(`http://localhost:9525/clients/logout`, {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    "email": email,
+                    "password": password
+                })
+            });
+            
+            const userData = await result.json();
+            console.log(userData.token);
+            return userData;
+        } catch (error) {
+            console.log(error);
+        }
+    },
     
     CreateUser: async (name, surName, email, telephone, password) => {
         try {
