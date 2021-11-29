@@ -7,10 +7,10 @@ const UserCard = (props) => {
         <div>
             <div>
             <h2>Datos Personales:</h2> 
-            <p>Nombre: Ejemplo</p>
-            <p>Apellidos: Ejemplo</p>
-            <p>Telefono de Contacto: Ejemplo</p>
-            <p>Email: Ejemplo</p>
+            <p>Nombre: {props.name} </p>
+            <p>Apellidos: {props.surname}</p>
+            <p>Telefono de Contacto: {props.phoneNumber} </p>
+            <p>Email: {props.phoneNumber} </p>
             </div>
             <Button>Actualiza Tus Datos</Button>
         </div>  
