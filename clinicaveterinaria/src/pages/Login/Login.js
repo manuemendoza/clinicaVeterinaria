@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import Button from '../../components/Boton/Button';
 import { ApiConsumer } from '../../services/ApiConsumer/ApiConsumer';
 import store from '../../services/store/store';
@@ -90,7 +89,6 @@ const Login = (props) => {
                 <Button type="submit" >Entra</Button>
                 <Button onClick={()=>redirectionToRegister()} >Registrate</Button>
             </form>
-            {/* {auth && <Todolist/>}  */}
         </div>
         </>
     )

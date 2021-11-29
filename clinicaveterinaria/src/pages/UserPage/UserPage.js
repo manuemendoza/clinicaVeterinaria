@@ -14,7 +14,7 @@ const UserPage = () => {
     const userLocal = JSON.parse(localStorage.getItem('user'));
     
     let userData = userLocal
-    
+    console.log();
     return(
         <>
         <Header/>
@@ -23,10 +23,9 @@ const UserPage = () => {
             <UserCard
             id={userData.id}
             name={userData.name} 
-            surname={userData.surname}
-            // phoneNumber={userData.phoneNumber} aqui es muy grande para el token ne my sql
+            surname={userData.surName}
+            phoneNumber={userData.phoneNumber}
             email={userData.email}
-            role={userData.role}
             />
             <Search/>
             <PetCard/>

@@ -85,5 +85,24 @@ export const ApiConsumer = {
             console.log(error)
         }
     },
+    UpDateUser: async (id, name, surName, email, telephone, password) => {
+        let userUpDate;
+        let url = `http://localhost:9525/clients/${id}`;
+        const result = await fetch(url, {
+            method: "PUT",
+            headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
+            body: JSON.stringify({
+                "name": name,
+                "surName": surName,
+                "email": email,
+                "phoneNumber": telephone,
+                "password": password
+
+            })
+        })
+        userUpDate = await result.json();
+        console.log(userUpDate);
+        return userUpDate;
+    },
 
 }
