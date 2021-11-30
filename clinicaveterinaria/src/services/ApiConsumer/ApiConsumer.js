@@ -18,6 +18,7 @@ export const ApiConsumer = {
             console.log(error);
         }
     },
+    
     logout: async (token) => {
         try {
             let result = await fetch(`http://localhost:9525/clients/logout`, {
@@ -62,6 +63,7 @@ export const ApiConsumer = {
             console.log(error)
         }
     },
+    
     CreatePet: async (name, animal, breed, gender, information, idUser) => {
         try {
             let result = await fetch(`http://localhost:9525/pet`, {
@@ -85,7 +87,9 @@ export const ApiConsumer = {
             console.log(error)
         }
     },
+    
     UpDateUser: async (id, name, surName, email, telephone, password) => {
+        console.log(id);
         let userUpDate;
         let url = `http://localhost:9525/clients/${id}`;
         const result = await fetch(url, {
@@ -104,5 +108,19 @@ export const ApiConsumer = {
         console.log(userUpDate);
         return userUpDate;
     },
+    
+    getPets: async (text) => {
+        let pets;
+        let url = `http://localhost:9525/pet`;
+        if (text) {
+            url = url + `?name=${text}`;
+        }
+        const result = await fetch(url, {
+            method: "GET",
+            headers: { "Authorization": "Bearer " + localStorage.getItem('token') }
+        })
+        pets = await result.json();
+        return pets;
+    }
 
 }

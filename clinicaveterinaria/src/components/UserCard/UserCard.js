@@ -7,9 +7,10 @@ import { ApiConsumer } from "../../services/ApiConsumer/ApiConsumer";
 const UserCard = (props) => {
 
     const userLocal = JSON.parse(localStorage.getItem('user'));
+    
     const id = userLocal.id;
-
-    const [Update, setUpdate] = useState(false);
+    console.log(id);
+    const [Update, setUpdate] = useState(true);
 
     const HandleUpdate = (e) => {
         e.preventDefault();
