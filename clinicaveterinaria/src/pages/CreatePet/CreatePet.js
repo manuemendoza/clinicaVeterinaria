@@ -1,21 +1,31 @@
+import { useNavigate } from "react-router";
 import Button from "../../components/Boton/Button";
 import Header from "../../components/Header/Header";
 import NavBar from "../../components/NavBar/NavBar";
 import { ApiConsumer } from "../../services/ApiConsumer/ApiConsumer";
 
 const CreatePet = () => {
+    const navigate = useNavigate();
 
     const HandleCreatePet = async (c) => {
+        
         c.preventDefault()
+        
         const name = c.target.name.value;
         const animal = c.target.kind.value;
         const breed = c.target.breed.value;
         const gender = c.target.gender.value;
         const information = c.target.information.value;
+        
+
         try {
             const user =JSON.parse(localStorage.getItem('user'));
             const idUser = user.id;
             const res = await ApiConsumer.CreatePet(name, gender, animal, breed, information, idUser);
+            setTimeout(() => {
+                navigate('/user');
+            }, 2000)
+            
             console.log(res);
         } catch (error) {
             alert(error);

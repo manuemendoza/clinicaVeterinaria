@@ -27,9 +27,6 @@ const UserCard = (props) => {
         const res = await ApiConsumer.UpDateUser(id, name, surName, email, telephone, password);
         
     };
-    // useEffect(() => {
-    //     upDateUser()
-    // }, [])
 
     return(
         <>

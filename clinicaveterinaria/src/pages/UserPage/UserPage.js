@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import Button from "../../components/Boton/Button";
 import Header from "../../components/Header/Header";
 import NavBar from "../../components/NavBar/NavBar";
@@ -12,9 +13,13 @@ const UserPage = () => {
     const [Loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const userLocal = JSON.parse(localStorage.getItem('user'));
+    const navigate = useNavigate();
+    let userData = userLocal;
+
+    const HandleRediretion = () =>{
+        navigate('/register/pet');
+    };
     
-    let userData = userLocal
-    console.log();
     return(
         <>
         <Header/>
@@ -27,6 +32,7 @@ const UserPage = () => {
             phoneNumber={userData.phoneNumber}
             email={userData.email}
             />
+            <Button onClick={()=>HandleRediretion()}>Resgistra tu nueva mascota aqui</Button>
             <Search/>
             <PetCard/>
         </div>
