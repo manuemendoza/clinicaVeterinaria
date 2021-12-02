@@ -1,13 +1,14 @@
 import Button from "../Boton/Button";
 import { useState,  } from "react";
 import { ApiConsumer } from "../../services/ApiConsumer/ApiConsumer";
+import { ApiAdmin } from "../../services/ApiConsumer/ApiAdmin";
 //HandleChangeToUpDate
 
-const UserCard = (props) => {
+const AdminCard = (props) => {
 
-    const userLocal = JSON.parse(localStorage.getItem('user'));
+    const adminLocal = JSON.parse(localStorage.getItem('admin'));
     
-    const id = userLocal.id;
+    const id = adminLocal.id;
 
     const [Update, setUpdate] = useState(true);
 
@@ -25,8 +26,10 @@ const UserCard = (props) => {
         const password= d.target.password.value;
         console.log(name,  surName, email, phoneNumber, password);
 
-        const res = await ApiConsumer.UpDateUser(id, name, surName, email, phoneNumber, password);
+        const res = await ApiAdmin.UpDateAdmin(id, name, surName, email, phoneNumber, password);
+        let adminData = res.admin
         console.log(res);
+        localStorage.setItem('admin',JSON.stringify(adminData));
         
     };
 
@@ -102,8 +105,6 @@ const UserCard = (props) => {
     )
 };
 
-export default UserCard
-
-
+export default AdminCard 
 
 

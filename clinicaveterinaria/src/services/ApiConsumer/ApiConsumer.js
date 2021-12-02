@@ -83,30 +83,8 @@ export const ApiConsumer = {
 
             return await result.json()
         } catch (error) {
-
             console.log(error)
         }
-    },
-    
-    UpDateUser: async (id, name, surName, email, telephone, password) => {
-        console.log(id);
-        let userUpDate;
-        let url = `http://localhost:9525/clients/${id}`;
-        const result = await fetch(url, {
-            method: "PUT",
-            headers: { "Authorization": "Bearer " + localStorage.getItem('token') },
-            body: JSON.stringify({
-                "name": name,
-                "surName": surName,
-                "email": email,
-                "phoneNumber": telephone,
-                "password": password
-
-            })
-        })
-        userUpDate = await result.json();
-        console.log(userUpDate);
-        return userUpDate;
     },
     
     getPets: async (text) => {
@@ -121,6 +99,39 @@ export const ApiConsumer = {
         })
         pets = await result.json();
         return pets;
-    }
+    },
+    
+    UpDateUser: async (id, name, surName, email, phoneNumber, password) => {
+        
+        let data = {};
+        if (name) {
+            data.name = name;
+        }
+        if (surName) {
+            data.surName = surName;
+        }
+        if (email) {
+            data.email = email;
+        }
+        if (phoneNumber) {
+            data.phoneNumber = phoneNumber;
+        }
+        if (password) {
+            data.password = password;
+        }
 
+        let userUpDate;
+        let url = `http://localhost:9525/clients/${id}`;
+        const result = await fetch(url, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer " + localStorage.getItem('token') 
+            },
+            body: JSON.stringify(data)
+        })
+        userUpDate = await result.json();
+        console.log(userUpDate);
+        return userUpDate;
+    },
 }
