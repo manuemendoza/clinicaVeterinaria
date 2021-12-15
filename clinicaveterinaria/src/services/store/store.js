@@ -11,6 +11,11 @@ const reduce = (initialState=startState , action) => {
                     ...initialState,
                     token: action.payload // AQUI NO ES UN CONCAT
                 }
+        case "DELETE_TOKE":
+            return{
+                ...initialState,
+                token: null
+            }
         default:
             return initialState;
     }

@@ -1,51 +1,42 @@
 import Button from '../../components/Boton/Button';
-import { ApiConsumer } from '../../services/ApiConsumer/ApiConsumer';
 import store from '../../services/store/store';
 import { addToken } from '../../services/actions/addToken';
 import { useNavigate } from 'react-router';
-import Header from '../../components/Header/Header';
-import NavBar from '../../components/NavBar/NavBar';
+import HeaderCompani from '../../components/Header/HeaderCompani';
+import NavBarAdmin from '../../components/NavBarAdmin/NavBarAdmin';
+import { ApiAdmin } from '../../services/ApiConsumer/ApiAdmin';
+
 
 
 const Login = (props) => {
-
-    // const [auth, setauth] = useState(false)
-    // const [Formulario, setFormulario] = useState(true)
     
     const navigate = useNavigate()
-    const redirectionToRegister = () => {
-        navigate("/register");
+
+    const redirectionToAdmin = () => {
+        navigate("/admin");
     };
-    const redirectionToUser = () => {
-        navigate("/user");
-    };
-    
-//     //enviamos datos y logeamos al usuario 
+
     const handleSendData = async (e) => {
 
         e.preventDefault()
         let email = e.target.email.value;
         let password = e.target.password.value;
-        // console.log(email);
-        // console.log(password);
 
         try {
-
-            const res = await ApiConsumer.loginUser(email, password);
+        
+            const res = await ApiAdmin.loginAdmin(email, password);
             let token = res.token;
-            let userData = res.user;
+            let adminData = res.admin;
             console.log(token);
-            console.log(userData);
+            console.log(adminData);      
             
             store.dispatch(addToken(token));
             localStorage.setItem('token', token);
-            localStorage.setItem('user', JSON.stringify(userData));
+            localStorage.setItem('admin', JSON.stringify(adminData));
             
-            
-
             if (token.length > 0) { 
                 setTimeout(() => { 
-                    redirectionToUser();
+                    redirectionToAdmin();
                 }, 2000);
             } else {   
                 console.log(null);
@@ -59,8 +50,8 @@ const Login = (props) => {
 
     return (
         <>
-        <Header/>
-        <NavBar/>
+        <HeaderCompani/>
+        <NavBarAdmin/>
         <div className="Profile">
             <form onSubmit={(e) => handleSendData(e)}> 
                 <legend>Bienvenido a PataPata</legend>
@@ -87,7 +78,6 @@ const Login = (props) => {
                     </div>
                 </div>
                 <Button type="submit" >Entra</Button>
-                <Button onClick={()=>redirectionToRegister()} >Registrate</Button>
             </form>
         </div>
         </>
